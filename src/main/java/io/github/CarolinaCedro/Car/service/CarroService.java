@@ -13,7 +13,7 @@ public class CarroService {
     @Autowired
     private CarroRepository rep;
 
-    public Iterable<Carro> getCarros(){
+    public Iterable<Carro> getCarros() {
         return rep.findAll();
     }
 
@@ -24,5 +24,9 @@ public class CarroService {
 
     public Iterable<Carro> getCarroByTipo(String tipo) {
         return rep.findByTipo(tipo);
+    }
+
+    public Carro save(Carro carro) {
+        return rep.save(carro);
     }
 }
