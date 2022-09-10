@@ -3,7 +3,6 @@ package io.github.CarolinaCedro.Car.api;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/")
 public class IndexController {
 
     @GetMapping()

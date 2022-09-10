@@ -5,6 +5,7 @@ import io.github.CarolinaCedro.Car.entities.Carro;
 import io.github.CarolinaCedro.Car.service.CarroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -36,14 +37,11 @@ public class CarroController {
     }
 
     @PostMapping
+    @Secured({"ROLE_ADMIN"})
     public ResponseEntity post(@RequestBody Carro carro) {
-        try {
-            CarroDto c = carroService.save(carro);
-            URI location = getUri(c.getId());
-            return ResponseEntity.created(null).build();
-        } catch (Exception c) {
-            return ResponseEntity.badRequest().build();
-        }
+        CarroDto c = carroService.save(carro);
+        URI location = getUri(c.getId());
+        return ResponseEntity.created(null).build();
     }
 
     private URI getUri(Long id) {
